@@ -34,7 +34,7 @@ useGoogleSignIn <- function(client_id, auto_prompt = TRUE) {
   ))
 }
 
-#' HTML for a Sign In With Google button
+#' Create HTML for a Sign In With Google button
 #'
 #' Creates the HTML element for displaying a Sign In With Google button. Most of
 #' the time you probably don't want to use this directly, but through the UI
@@ -108,7 +108,7 @@ googleSignInServer <- function(id, client_ids) {
   })
 }
 
-#' A demo app for using Sign In With Google
+#' A demo Shiny app for using Sign In With Google
 #'
 #' @inheritParams useGoogleSignIn
 #'

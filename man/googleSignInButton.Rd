@@ -2,7 +2,7 @@
 % Please edit documentation in R/googleSignIn.R
 \name{googleSignInButton}
 \alias{googleSignInButton}
-\title{HTML for a Sign In With Google button}
+\title{Create HTML for a Sign In With Google button}
 \usage{
 googleSignInButton(inputId, options = list())
 }

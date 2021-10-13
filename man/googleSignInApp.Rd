@@ -2,7 +2,7 @@
 % Please edit documentation in R/googleSignIn.R
 \name{googleSignInApp}
 \alias{googleSignInApp}
-\title{A demo app for using Sign In With Google}
+\title{A demo Shiny app for using Sign In With Google}
 \usage{
 googleSignInApp(client_id)
 }
@@ -11,7 +11,7 @@ googleSignInApp(client_id)
 See Details for acquiring one.}
 }
 \description{
-A demo app for using Sign In With Google
+A demo Shiny app for using Sign In With Google
 }
 \section{Client ID}{
 In order to use Sign In With Google in Shiny, you need to register a client
