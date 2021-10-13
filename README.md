@@ -21,5 +21,6 @@ First, you'll need to [obtain a Google API client ID](https://developers.google.
 
 ``` r
 library(shinygsi)
+
 googleSignInApp("<YOUR-CLIENT-ID-HERE>")
 ```
