@@ -1,0 +1,22 @@
+Package: shinygsi
+Title: Integrate Sign In With Google with Shiny Apps
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Mikko",
+           family = "Marttila",
+           role = c("aut", "cre"),
+           email = "mikkmart@pm.me")
+Description: Use Sign In With Google in your Shiny app to authenticate users,
+    and get their basic information.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    httc (>= 0.0.1),
+    httr,
+    jose,
+    shiny
+Remotes: 
+    mikmart/httc
