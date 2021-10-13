@@ -20,5 +20,5 @@ Imports:
     shiny
 Remotes: 
     mikmart/httc
-URL: https://github.com/mikmart/shinygsi
+URL: https://mikmart.github.io/shinygsi, https://github.com/mikmart/shinygsi
 BugReports: https://github.com/mikmart/shinygsi/issues

@@ -1,3 +1,5 @@
+url: https://mikmart.github.io/shinygsi
+
 template:
   params:
     bootswatch: flatly
