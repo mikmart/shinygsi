@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/googleSignInApp.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/googleSignInButton.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/googleSignInServer.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/googleSignInUI.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/google_public_key.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/gsi_user_info.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/gsi_verify_credential.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/shinygsi-package.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/useGoogleSignIn.html</loc>
+  </url>
+</urlset>
