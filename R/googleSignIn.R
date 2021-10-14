@@ -78,7 +78,9 @@ useGoogleSignIn <- function(client_id, auto_prompt = TRUE) {
 #'
 #' @export
 googleSignInButton <- function(inputId, options = list()) {
-  names(options) <- paste0("data-", names(options))
+  if (!is.null(names(options))) {
+    names(options) <- paste0("data-", names(options))
+  }
   div(id = inputId, class = "g_id_signin", !!!options)
 }
 
