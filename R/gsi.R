@@ -17,6 +17,8 @@ gsi_verify_credential <- function(credential, client_ids) {
       jose::jwt_decode_sig(credential, key),
       error = identity
     )
+
+    # Don't need to check others if one succeeded
     if (!rlang::is_condition(payload)) {
       break
     }
@@ -36,7 +38,7 @@ gsi_verify_credential <- function(credential, client_ids) {
 
   if (!all(checks_passed)) {
     abort_verification(
-      message = "Google ID token payload verification failed.",
+      message = "Payload checks failed.",
       payload = payload,
       checks = checks_passed,
       class = "gsi_payload_error"
@@ -46,8 +48,9 @@ gsi_verify_credential <- function(credential, client_ids) {
   payload
 }
 
-abort_verification <- function(..., class = character()) {
-  rlang::abort(class = c(class, "gsi_verification_error"), ...)
+abort_verification <- function(message, ..., class = character()) {
+  message <- paste0("Google ID token verification failed:\n", message)
+  rlang::abort(message, ..., class = c(class, "gsi_verification_error"))
 }
 
 
