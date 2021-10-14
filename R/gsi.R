@@ -14,26 +14,26 @@ gsi_verify_credential <- function(credential, client_ids) {
   # Check all keys -- the token could be signed with either.
   for (key in google_public_keys()) {
     payload <- tryCatch(
-      jose::jwt_decode_sig(credential, key),
+      rlang::with_abort(
+        jose::jwt_decode_sig(credential, key)
+      ),
       error = identity
     )
 
     # Don't need to check others if one succeeded
-    if (!rlang::is_condition(payload)) {
-      break
-    }
+    if (!rlang::is_condition(payload)) break
   }
 
   # Check if decoding or signature verification failed
   if (rlang::is_condition(payload)) {
     abort_verification(
       message = "Decoding or signature verification failed.",
-      original_error = payload,
+      parent = payload,
       class = "gsi_decode_sig_error"
     )
   }
 
-  # Check payload conditions
+  # Check if payload fulfills conditions
   checks_passed <- c(
     iss = payload$iss %in% paste0(c("", "https://"), "accounts.google.com"),
     aud = payload$aud %in% client_ids,
@@ -43,8 +43,10 @@ gsi_verify_credential <- function(credential, client_ids) {
   if (!all(checks_passed)) {
     abort_verification(
       message = "Payload checks failed.",
-      payload = payload,
-      checks = checks_passed,
+      data = list(
+        payload = payload,
+        checks = checks_passed
+      ),
       class = "gsi_payload_error"
     )
   }
@@ -55,7 +57,6 @@ gsi_verify_credential <- function(credential, client_ids) {
 abort_verification <- function(message, ..., class = character()) {
   rlang::abort(message, ..., class = c(class, "gsi_verification_error"))
 }
-
 
 #' Get Google's JWK public key for verifying signatures
 #'
