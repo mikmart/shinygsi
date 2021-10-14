@@ -40,7 +40,10 @@
 
 
 <meta property="og:title" content="User interface for a Sign In With Google module — googleSignInUI" />
-<meta property="og:description" content="User interface for a Sign In With Google module" />
+<meta property="og:description" content="Creates a &quot;Sign in with Google&quot; button in the UI that links the
+authentication response to the server side googleSignInServer().
+To render and function properly, you must call useGoogleSignIn()
+somewhere in your UI code." />
 
 
 
@@ -72,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygsi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -114,7 +117,10 @@
     </div>
 
     <div class="ref-description">
-    <p>User interface for a Sign In With Google module</p>
+    <p>Creates a "Sign in with Google" button in the UI that links the
+authentication response to the server side <code><a href='googleSignInServer.html'>googleSignInServer()</a></code>.
+To render and function properly, you must call <code><a href='useGoogleSignIn.html'>useGoogleSignIn()</a></code>
+somewhere in your UI code.</p>
     </div>
 
     <pre class="usage"><span class='fu'>googleSignInUI</span><span class='op'>(</span><span class='va'>id</span>, options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -129,20 +135,23 @@ UI function.</p></td>
     </tr>
     <tr>
       <th>options</th>
-      <td><p>A list of customization options to control the appearance of
-the button. <code>data-</code> will be automatically appended to the names. See <a href='https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin'>GSI reference</a>
-for possible values.</p></td>
+      <td><p>A list of customization options for the included
+<code><a href='googleSignInButton.html'>googleSignInButton()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>While you <em>can</em> include several of these in an app, only the first
-one will ever receive input from the sign in button due to the way Sign In
-With Google is set up on the JavaScript side.</p>
+    <p>Note that while you <em>can</em> have several sign in UIs in the app,
+whenever new authentication information is received it gets passed to
+<strong>all</strong> the sign in module inputs in the app.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='googleSignInServer.html'>googleSignInServer()</a></code> for the module server part.</p></div>
+    <div class='dont-index'><p><code><a href='googleSignInServer.html'>googleSignInServer()</a></code> for the module server part.
+<code><a href='googleSignInButton.html'>googleSignInButton()</a></code> for details on the included button.</p>
+<p>Other module functions: 
+<code><a href='googleSignInServer.html'>googleSignInServer</a>()</code>,
+<code><a href='useGoogleSignIn.html'>useGoogleSignIn</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

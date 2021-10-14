@@ -41,9 +41,8 @@
 
 <meta property="og:title" content="Create HTML for a Sign In With Google button — googleSignInButton" />
 <meta property="og:description" content="Creates the HTML element for displaying a Sign In With Google button. Most of
-the time you probably don't want to use this directly, but through the UI
-module googleSignInUI() instead. That allows the server to decode and
-verify the token received from the authentication process." />
+the time you probably don't want to use this directly, but through the
+googleSignInUI() module instead." />
 
 
 
@@ -75,7 +74,7 @@ verify the token received from the authentication process." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygsi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -118,9 +117,8 @@ verify the token received from the authentication process." />
 
     <div class="ref-description">
     <p>Creates the HTML element for displaying a Sign In With Google button. Most of
-the time you probably don't want to use this directly, but through the UI
-module <code><a href='googleSignInUI.html'>googleSignInUI()</a></code> instead. That allows the server to decode and
-verify the token received from the authentication process.</p>
+the time you probably don't want to use this directly, but through the
+<code><a href='googleSignInUI.html'>googleSignInUI()</a></code> module instead.</p>
     </div>
 
     <pre class="usage"><span class='fu'>googleSignInButton</span><span class='op'>(</span><span class='va'>inputId</span>, options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -131,27 +129,50 @@ verify the token received from the authentication process.</p>
     <tr>
       <th>inputId</th>
       <td><p>The <code>input</code> slot that authentication information will be
-available in. Note that while you can have several buttons in an app, the
-<code>inputId</code> of the first one found will determine the name of the Shiny
-<code>input</code> where authentication information will be passed.</p></td>
+available in. See Details.</p></td>
     </tr>
     <tr>
       <th>options</th>
       <td><p>A list of customization options to control the appearance of
-the button. <code>data-</code> will be automatically appended to the names. See <a href='https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin'>GSI reference</a>
+the button. The names will be automatically prepended with <code>"data-"</code>.
+See Examples for usage and <a href='https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin'>Google's reference</a>
 for possible values.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The given <code>inputId</code> receives the encoded Google ID JWT value. Most of the
+time you may want to use <code><a href='googleSignInUI.html'>googleSignInUI()</a></code> paired with the server module
+<code><a href='googleSignInServer.html'>googleSignInServer()</a></code> instead to decode and verify the token.</p>
+<p>Note that while you <em>can</em> have several buttons in an app, whenever new
+authentication information is received it gets passed to <strong>all</strong> the
+<code>googleSignInButton()</code> inputs in the app.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     
 <ul>
+<li><p><a href='https://developers.google.com/identity/gsi/web/guides/personalized-button'>https://developers.google.com/identity/gsi/web/guides/personalized-button</a></p></li>
 <li><p><a href='https://developers.google.com/identity/gsi/web/guides/display-button#html'>https://developers.google.com/identity/gsi/web/guides/display-button#html</a></p></li>
 <li><p><a href='https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin'>https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin</a></p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p>You might instead want <code><a href='googleSignInUI.html'>googleSignInUI()</a></code> to use the full module.</p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Customizing the appearance</span>
+<span class='fu'>googleSignInButton</span><span class='op'>(</span>
+  inputId <span class='op'>=</span> <span class='st'>"google_jwt"</span>,
+  options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    theme <span class='op'>=</span> <span class='st'>"filled_blue"</span>,
+    shape <span class='op'>=</span> <span class='st'>"pill"</span>,
+    text <span class='op'>=</span> <span class='st'>"continue_with"</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;div id="google_jwt" class="g_id_signin" data-theme="filled_blue" data-shape="pill" data-text="continue_with"&gt;&lt;/div&gt;</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

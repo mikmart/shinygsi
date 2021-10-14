@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">shinygsi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -72,7 +72,8 @@
 <a href="#shinygsi" class="anchor"></a>shinygsi</h1></div>
 <!-- badges: start -->
 
-<p>The goal of shinygsi is to make it easy to integrate Sign In With Google with your Shiny app for user authentication. It uses the newer <a href="https://developers.google.com/identity/gsi/web">Google Identity Services</a> Sign In API.</p>
+<p>The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via the <a href="https://developers.google.com/identity/gsi/web">Google Identity Services</a> Sign In API. shinygsi provides a simple Shiny module with the <code><a href="reference/googleSignInUI.html">googleSignInUI()</a></code> and <code><a href="reference/googleSignInServer.html">googleSignInServer()</a></code> pair, and an additional <code><a href="reference/useGoogleSignIn.html">useGoogleSignIn()</a></code> function to put the JavaScript in place that makes it all work in your app.</p>
+<p>In order to use Sign In With Google (with shinygsi or otherwise), you’ll need to register your app and <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">obtain a Google API client ID</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -80,10 +81,21 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mikmart/shinygsi"</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p>First, make sure you have <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">a Google API client ID</a> to use with your app. Then, normally you need to:</p>
+<ol>
+<li>Include <code><a href="reference/useGoogleSignIn.html">useGoogleSignIn()</a></code> comewhere in your UI code, with your client ID.</li>
+<li>Use <code><a href="reference/googleSignInUI.html">googleSignInUI()</a></code> to place the “Sign in with Google” button in your UI.</li>
+<li>Handle the credential decoding and verification with <code><a href="reference/googleSignInServer.html">googleSignInServer()</a></code>.</li>
+</ol>
+<p>There’s also a convenience function <code><a href="reference/gsi_user_info.html">gsi_user_info()</a></code> that you can use to parse basic user details from the authentication information returned by <code><a href="reference/googleSignInServer.html">googleSignInServer()</a></code>.</p>
+</div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>First, you’ll need to <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">obtain a Google API client ID</a>. Once you have one, you can start building your app with users authenticated via Google. Here’s the basic building blocks for setting up Sign In With Google:</p>
+<p>Here’s the structure for a simple app putting the pieces together:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mikmart.github.io/shinygsi">shinygsi</a></span><span class="op">)</span>
@@ -103,7 +115,7 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
-<p>There’s also an included demo app that you can run directly:</p>
+<p>The above is also included in a demo app that you can run directly:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/googleSignInApp.html">googleSignInApp</a></span><span class="op">(</span>client_id <span class="op">=</span> <span class="st">"&lt;YOUR-CLIENT-ID-HERE&gt;"</span><span class="op">)</span></code></pre></div>
 </div>
