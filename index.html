@@ -72,7 +72,7 @@
 <a href="#shinygsi" class="anchor"></a>shinygsi</h1></div>
 <!-- badges: start -->
 
-<p>The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via <a href="https://developers.google.com/identity/gsi/web">Google Identity Services</a>, with features like <a href="https://developers.google.com/identity/gsi/web/guides/personalized-button">a personalized sign in button</a> and <a href="https://developers.google.com/identity/gsi/web/guides/features">the Google One Tap prompt</a>. shinygsi provides a simple Shiny module with the <code><a href="reference/googleSignInUI.html">googleSignInUI()</a></code> and <code><a href="reference/googleSignInServer.html">googleSignInServer()</a></code> pair, and a <code><a href="reference/useGoogleSignIn.html">useGoogleSignIn()</a></code> function to make the JavaScript work.</p>
+<p>The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via <a href="https://developers.google.com/identity/gsi/web">Google Identity Services</a>, with features like <a href="https://developers.google.com/identity/gsi/web/guides/personalized-button">a personalized sign in button</a> and <a href="https://developers.google.com/identity/gsi/web/guides/features">the Google One Tap prompt</a>. To achieve this, shinygsi provides a simple Shiny module with the <code><a href="reference/googleSignInUI.html">googleSignInUI()</a></code> and <code><a href="reference/googleSignInServer.html">googleSignInServer()</a></code> pair, and a <code><a href="reference/useGoogleSignIn.html">useGoogleSignIn()</a></code> function to make the JavaScript work.</p>
 <p>In order to use Sign In With Google, you’ll need to register your app and <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">obtain a Google API client ID</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -118,6 +118,16 @@
 <p>The above is also included in a demo app that you can run directly:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/googleSignInApp.html">googleSignInApp</a></span><span class="op">(</span>client_id <span class="op">=</span> <span class="st">"&lt;YOUR-CLIENT-ID-HERE&gt;"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="prior-art" class="section level2">
+<h2 class="hasAnchor">
+<a href="#prior-art" class="anchor"></a>Prior art</h2>
+<ul>
+<li>
+<a href="https://cran.r-project.org/package=googleAuthR">googleAuthR</a>, among other extensive functionality, offers an (old-style) <code>googleSignIn</code> Shiny module. However, it’s backed by the <a href="https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html">deprecating Google Sign-In JavaScript Platform Library</a>.</li>
+<li>
+<a href="https://cran.r-project.org/package=gargle">gargle</a> offers more generic tools for working with Google APIs.</li>
+</ul>
 </div>
 </div>
   </div>
