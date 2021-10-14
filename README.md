@@ -6,7 +6,7 @@
 [![R-CMD-check](https://github.com/mikmart/shinygsi/workflows/R-CMD-check/badge.svg)](https://github.com/mikmart/shinygsi/actions)
 <!-- badges: end -->
 
-The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via [Google Identity Services](https://developers.google.com/identity/gsi/web), with features like [a personalized sign in button](https://developers.google.com/identity/gsi/web/guides/personalized-button) and [the Google One Tap prompt](https://developers.google.com/identity/gsi/web/guides/features). shinygsi provides a simple Shiny module with the `googleSignInUI()` and `googleSignInServer()` pair, and a `useGoogleSignIn()` function to make the JavaScript work.
+The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via [Google Identity Services](https://developers.google.com/identity/gsi/web), with features like [a personalized sign in button](https://developers.google.com/identity/gsi/web/guides/personalized-button) and [the Google One Tap prompt](https://developers.google.com/identity/gsi/web/guides/features). To achieve this, shinygsi provides a simple Shiny module with the `googleSignInUI()` and `googleSignInServer()` pair, and a `useGoogleSignIn()` function to make the JavaScript work.
 
 In order to use Sign In With Google, you'll need to register your app and [obtain a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
 
@@ -58,3 +58,8 @@ The above is also included in a demo app that you can run directly:
 ``` r
 googleSignInApp(client_id = "<YOUR-CLIENT-ID-HERE>")
 ```
+
+## Prior art
+
+* [googleAuthR](https://cran.r-project.org/package=googleAuthR), among other extensive functionality, offers an (old-style) `googleSignIn` Shiny module. However, it's backed by the [deprecating Google Sign-In JavaScript Platform Library](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html).
+* [gargle](https://cran.r-project.org/package=gargle) offers more generic tools for working with Google APIs.
