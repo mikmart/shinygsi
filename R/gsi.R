@@ -26,7 +26,11 @@ gsi_verify_credential <- function(credential, client_ids) {
 
   # Check if decoding or signature verification failed
   if (rlang::is_condition(payload)) {
-    abort_verification(payload$message)
+    abort_verification(
+      message = "Decoding or signature verification failed.",
+      original_error = payload,
+      class = "gsi_decode_sig_error"
+    )
   }
 
   # Check payload conditions
@@ -49,7 +53,6 @@ gsi_verify_credential <- function(credential, client_ids) {
 }
 
 abort_verification <- function(message, ..., class = character()) {
-  message <- paste0("Google ID token verification failed:\n", message)
   rlang::abort(message, ..., class = c(class, "gsi_verification_error"))
 }
 
