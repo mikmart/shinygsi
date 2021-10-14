@@ -12,6 +12,7 @@
 #' @param client_id A string containing the client ID of your Google web app.
 #'   See Details for acquiring one.
 #' @param auto_prompt Logical. Should the Google One Tap prompt be displayed?
+#' @param auto_select Logical. Should automatic sign-in be enabled?
 #'
 #' @references
 #' * <https://developers.google.com/identity/gsi/web/guides/display-button#html>
@@ -19,7 +20,7 @@
 #'
 #' @family module functions
 #' @export
-useGoogleSignIn <- function(client_id, auto_prompt = TRUE) {
+useGoogleSignIn <- function(client_id, auto_prompt = TRUE, auto_select = TRUE) {
   singleton(
     tagList(
       tags$head(
@@ -30,7 +31,8 @@ useGoogleSignIn <- function(client_id, auto_prompt = TRUE) {
         id = "g_id_onload",
         `data-client_id` = client_id,
         `data-callback` = "handleGoogleSignInCredentialResponse",
-        `data-auto_prompt` = tolower(auto_prompt)
+        `data-auto_prompt` = tolower(auto_prompt),
+        `data-auto_select` = tolower(auto_select),
       ),
     )
   )

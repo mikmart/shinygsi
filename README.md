@@ -6,7 +6,7 @@
 [![R-CMD-check](https://github.com/mikmart/shinygsi/workflows/R-CMD-check/badge.svg)](https://github.com/mikmart/shinygsi/actions)
 <!-- badges: end -->
 
-The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via the [Google Identity Services](https://developers.google.com/identity/gsi/web) Sign In API. shinygsi provides a simple Shiny module with the `googleSignInUI()` and `googleSignInServer()` pair, and an additional `useGoogleSignIn()` function to put the JavaScript in place that makes it all work in your app.
+The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via [Google Identity Services](https://developers.google.com/identity/gsi/web), with features like [a personalized sign in button](https://developers.google.com/identity/gsi/web/guides/personalized-button) and [the Google One Tap prompt](https://developers.google.com/identity/gsi/web/guides/features). shinygsi provides a simple Shiny module with the `googleSignInUI()` and `googleSignInServer()` pair, and a `useGoogleSignIn()` function to make the JavaScript work.
 
 In order to use Sign In With Google, you'll need to register your app and [obtain a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
 

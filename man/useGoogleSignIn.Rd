@@ -4,13 +4,15 @@
 \alias{useGoogleSignIn}
 \title{Set up a Shiny app to use Sign In With Google}
 \usage{
-useGoogleSignIn(client_id, auto_prompt = TRUE)
+useGoogleSignIn(client_id, auto_prompt = TRUE, auto_select = TRUE)
 }
 \arguments{
 \item{client_id}{A string containing the client ID of your Google web app.
 See Details for acquiring one.}
 
 \item{auto_prompt}{Logical. Should the Google One Tap prompt be displayed?}
+
+\item{auto_select}{Logical. Should automatic sign-in be enabled?}
 }
 \description{
 Call this function at least once in your Shiny app UI to set up the necessary
