@@ -8,6 +8,15 @@
 \description{
 Use Sign In With Google in your Shiny app to authenticate users, and get their basic information.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://mikmart.github.io/shinygsi}
+  \item \url{https://github.com/mikmart/shinygsi}
+  \item Report bugs at \url{https://github.com/mikmart/shinygsi/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Mikko Marttila \email{mikkmart@pm.me}
 

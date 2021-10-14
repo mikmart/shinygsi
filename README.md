@@ -5,7 +5,9 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of shinygsi is to make it easy to integrate Sign In With Google with your Shiny app for user authentication. It uses the newer [Google Identity Services](https://developers.google.com/identity/gsi/web) Sign In API.
+The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via the [Google Identity Services](https://developers.google.com/identity/gsi/web) Sign In API. shinygsi provides a simple Shiny module with the `googleSignInUI()` and `googleSignInServer()` pair, and an additional `useGoogleSignIn()` function to put the JavaScript in place that makes it all work in your app.
+
+In order to use Sign In With Google (with shinygsi or otherwise), you'll need to register your app and [obtain a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
 
 ## Installation
 
@@ -15,9 +17,19 @@ shinygsi is not on CRAN. You can install the development version with:
 remotes::install_github("mikmart/shinygsi")
 ```
 
+## Usage
+
+First, make sure you have [a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid) to use with your app. Then, normally you need to:
+
+1. Include `useGoogleSignIn()` comewhere in your UI code, with your client ID.
+2. Use `googleSignInUI()` to place the "Sign in with Google" button in your UI.
+3. Handle the credential decoding and verification with `googleSignInServer()`.
+
+There's also a convenience function `gsi_user_info()` that you can use to parse basic user details from the authentication information returned by `googleSignInServer()`.
+
 ## Example
 
-First, you'll need to [obtain a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid). Once you have one, you can start building your app with users authenticated via Google. Here's the basic building blocks for setting up Sign In With Google:
+Here's the structure for a simple app putting the pieces together:
 
 ``` r
 library(shiny)
@@ -40,7 +52,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-There's also an included demo app that you can run directly:
+The above is also included in a demo app that you can run directly:
 
 ``` r
 googleSignInApp(client_id = "<YOUR-CLIENT-ID-HERE>")

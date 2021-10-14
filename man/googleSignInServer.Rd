@@ -13,9 +13,21 @@ UI function.}
 \item{client_ids}{A character vector of recognized client IDs for your app.}
 }
 \description{
-The module provides a reactive return value containing a decoded and verified
-Google ID token, or NULL. See \code{\link[=gsi_verify_credential]{gsi_verify_credential()}} for details.
+Handles decoding and verification of the authentication response received
+from the linked UI part, \code{googleSignInUI()}. Provides a reactive return value
+containing a list with the verified Google ID token's payload, or \code{NULL}.
+}
+\details{
+The server module decodes and verifies the encoded Google ID JWT received
+from the UI module upon succesful completion of the authentication flow. See
+\code{\link[=gsi_verify_credential]{gsi_verify_credential()}} for details about the verification process.
 }
 \seealso{
-\code{\link[=googleSignInUI]{googleSignInUI()}} for the module UI part.
+\code{\link[=googleSignInUI]{googleSignInUI()}} for the module UI part. \code{\link[=gsi_user_info]{gsi_user_info()}} for
+extracting basic user details from the return value.
+
+Other module functions: 
+\code{\link{googleSignInUI}()},
+\code{\link{useGoogleSignIn}()}
 }
+\concept{module functions}

@@ -8,23 +8,46 @@ googleSignInButton(inputId, options = list())
 }
 \arguments{
 \item{inputId}{The \code{input} slot that authentication information will be
-available in. Note that while you can have several buttons in an app, the
-\code{inputId} of the first one found will determine the name of the Shiny
-\code{input} where authentication information will be passed.}
+available in. See Details.}
 
 \item{options}{A list of customization options to control the appearance of
-the button. \verb{data-} will be automatically appended to the names. See \href{https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin}{GSI reference}
+the button. The names will be automatically prepended with \code{"data-"}.
+See Examples for usage and \href{https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin}{Google's reference}
 for possible values.}
 }
 \description{
 Creates the HTML element for displaying a Sign In With Google button. Most of
-the time you probably don't want to use this directly, but through the UI
-module \code{googleSignInUI()} instead. That allows the server to decode and
-verify the token received from the authentication process.
+the time you probably don't want to use this directly, but through the
+\code{googleSignInUI()} module instead.
+}
+\details{
+The given \code{inputId} receives the encoded Google ID JWT value. Most of the
+time you may want to use \code{googleSignInUI()} paired with the server module
+\code{googleSignInServer()} instead to decode and verify the token.
+
+Note that while you \emph{can} have several buttons in an app, whenever new
+authentication information is received it gets passed to \strong{all} the
+\code{googleSignInButton()} inputs in the app.
+}
+\examples{
+# Customizing the appearance
+googleSignInButton(
+  inputId = "google_jwt",
+  options = list(
+    theme = "filled_blue",
+    shape = "pill",
+    text = "continue_with"
+  )
+)
+
 }
 \references{
 \itemize{
+\item \url{https://developers.google.com/identity/gsi/web/guides/personalized-button}
 \item \url{https://developers.google.com/identity/gsi/web/guides/display-button#html}
 \item \url{https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin}
 }
+}
+\seealso{
+You might instead want \code{\link[=googleSignInUI]{googleSignInUI()}} to use the full module.
 }

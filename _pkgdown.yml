@@ -3,3 +3,11 @@ url: https://mikmart.github.io/shinygsi
 template:
   params:
     bootswatch: flatly
+
+reference:
+  - title: Module functions
+    contents:
+      - has_concept("module functions")
+  - title: Other functions
+    contents:
+      - lacks_concepts("module functions")

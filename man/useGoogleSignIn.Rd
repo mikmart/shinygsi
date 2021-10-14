@@ -29,3 +29,11 @@ provides details for the setup steps
 \item \url{https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_id_g_id_onload}
 }
 }
+\seealso{
+The module parts: \code{\link[=googleSignInUI]{googleSignInUI()}} and \code{\link[=googleSignInServer]{googleSignInServer()}}.
+
+Other module functions: 
+\code{\link{googleSignInServer}()},
+\code{\link{googleSignInUI}()}
+}
+\concept{module functions}

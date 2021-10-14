@@ -10,18 +10,26 @@ googleSignInUI(id, options = list())
 \item{id}{An ID string that corresponds with the ID used to call the module's
 UI function.}
 
-\item{options}{A list of customization options to control the appearance of
-the button. \verb{data-} will be automatically appended to the names. See \href{https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_class_g_id_signin}{GSI reference}
-for possible values.}
+\item{options}{A list of customization options for the included
+\code{\link[=googleSignInButton]{googleSignInButton()}}.}
 }
 \description{
-User interface for a Sign In With Google module
+Creates a "Sign in with Google" button in the UI that links the
+authentication response to the server side \code{\link[=googleSignInServer]{googleSignInServer()}}.
+To render and function properly, you must call \code{\link[=useGoogleSignIn]{useGoogleSignIn()}}
+somewhere in your UI code.
 }
 \details{
-While you \emph{can} include several of these in an app, only the first
-one will ever receive input from the sign in button due to the way Sign In
-With Google is set up on the JavaScript side.
+Note that while you \emph{can} have several sign in UIs in the app,
+whenever new authentication information is received it gets passed to
+\strong{all} the sign in module inputs in the app.
 }
 \seealso{
 \code{\link[=googleSignInServer]{googleSignInServer()}} for the module server part.
+\code{\link[=googleSignInButton]{googleSignInButton()}} for details on the included button.
+
+Other module functions: 
+\code{\link{googleSignInServer}()},
+\code{\link{useGoogleSignIn}()}
 }
+\concept{module functions}

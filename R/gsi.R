@@ -1,13 +1,13 @@
-#' Verify an encoded Google ID token
+#' Decode and verify an encoded Google ID token
 #'
-#' @param credential A string containing an encoded JWT.
+#' @param credential A string containing an encoded Google ID JWT.
 #' @param client_ids A character vector of recognized client IDs for your app.
 #'
 #' @return `NULL` if verification failed, otherwise the decoded JWT payload.
 #'
 #' @seealso [gsi_user_info()] for extracting user details from the decoded JWT.
 #' @references
-#' * [https://developers.google.com/identity/gsi/web/guides/verify-google-id-token]()
+#' * <https://developers.google.com/identity/gsi/web/guides/verify-google-id-token>
 #'
 #' @export
 gsi_verify_credential <- function(credential, client_ids) {
@@ -30,6 +30,10 @@ gsi_verify_credential <- function(credential, client_ids) {
 }
 
 #' Get Google's JWK public key for verifying signatures
+#'
+#' Get Google's JWK public key via an API call. The result is cached according
+#' to the `Cache-Control` header with the [httc] package.
+#'
 #' @return An OpenSSL RSA public key object. See [openssl::rsa_keygen()].
 #' @keywords internal
 google_public_key <- function() {

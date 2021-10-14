@@ -2,12 +2,12 @@
 % Please edit documentation in R/gsi.R
 \name{gsi_verify_credential}
 \alias{gsi_verify_credential}
-\title{Verify an encoded Google ID token}
+\title{Decode and verify an encoded Google ID token}
 \usage{
 gsi_verify_credential(credential, client_ids)
 }
 \arguments{
-\item{credential}{A string containing an encoded JWT.}
+\item{credential}{A string containing an encoded Google ID JWT.}
 
 \item{client_ids}{A character vector of recognized client IDs for your app.}
 }
@@ -15,7 +15,7 @@ gsi_verify_credential(credential, client_ids)
 \code{NULL} if verification failed, otherwise the decoded JWT payload.
 }
 \description{
-Verify an encoded Google ID token
+Decode and verify an encoded Google ID token
 }
 \references{
 \itemize{

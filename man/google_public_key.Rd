@@ -10,6 +10,7 @@ google_public_key()
 An OpenSSL RSA public key object. See \code{\link[openssl:keygen]{openssl::rsa_keygen()}}.
 }
 \description{
-Get Google's JWK public key for verifying signatures
+Get Google's JWK public key via an API call. The result is cached according
+to the \code{Cache-Control} header with the \link{httc} package.
 }
 \keyword{internal}
