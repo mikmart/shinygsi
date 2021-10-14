@@ -15,7 +15,7 @@ UI function.}
 \description{
 Handles decoding and verification of the authentication response received
 from the linked UI part, \code{googleSignInUI()}. Provides a reactive return value
-containing a list with the verified Google ID token's payload, or \code{NULL}.
+containing a list with the verified Google ID token's payload.
 }
 \details{
 The server module decodes and verifies the encoded Google ID JWT received

@@ -3,7 +3,7 @@
 #' @param credential A string containing an encoded Google ID JWT.
 #' @param client_ids A character vector of recognized client IDs for your app.
 #'
-#' @return `NULL` if verification failed, otherwise the decoded JWT payload.
+#' @return The decoded JWT payload. Throws an error if verification failed.
 #'
 #' @seealso [gsi_user_info()] for extracting user details from the decoded JWT.
 #' @references
@@ -11,23 +11,45 @@
 #'
 #' @export
 gsi_verify_credential <- function(credential, client_ids) {
-  credential <- tryCatch(
-    jose::jwt_decode_sig(credential, google_public_key()),
-    error = function(e) NULL
+  # Check all keys -- the token could be signed with either.
+  for (key in google_public_keys()) {
+    payload <- tryCatch(
+      jose::jwt_decode_sig(credential, key),
+      error = identity
+    )
+    if (!rlang::is_condition(payload)) {
+      break
+    }
+  }
+
+  # Check if decoding or signature verification failed
+  if (rlang::is_condition(payload)) {
+    abort_verification(payload$message)
+  }
+
+  # Check payload conditions
+  checks_passed <- c(
+    iss = payload$iss %in% paste0(c("", "https://"), "accounts.google.com"),
+    aud = payload$aud %in% client_ids,
+    exp = payload$exp > Sys.time()
   )
 
-  # Decoding or signature verification failed
-  if (is.null(credential)) return(NULL)
+  if (!all(checks_passed)) {
+    abort_verification(
+      message = "Google ID token payload verification failed.",
+      payload = payload,
+      checks = checks_passed,
+      class = "gsi_payload_error"
+    )
+  }
 
-  conditions_met <- c(
-    credential$iss %in% paste0(c("", "https://"), "accounts.google.com"),
-    credential$aud %in% client_ids,
-    credential$exp > Sys.time()
-  )
-
-  # Could emit check results to a log in the future
-  if (!all(conditions_met)) NULL else credential
+  payload
 }
+
+abort_verification <- function(..., class = character()) {
+  rlang::abort(class = c(class, "gsi_verification_error"), ...)
+}
+
 
 #' Get Google's JWK public key for verifying signatures
 #'
@@ -36,10 +58,10 @@ gsi_verify_credential <- function(credential, client_ids) {
 #'
 #' @return An OpenSSL RSA public key object. See [openssl::rsa_keygen()].
 #' @keywords internal
-google_public_key <- function() {
+google_public_keys <- function() {
   response <- httc::GET("https://www.googleapis.com/oauth2/v3/certs")
-  json_key <- httr::content(response, "parsed")$keys[[1]]
-  jose::read_jwk(json_key)
+  json_keys <- httr::content(response, "parsed")$keys
+  lapply(json_keys, jose::read_jwk)
 }
 
 #' Get user details from a Google ID token

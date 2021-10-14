@@ -113,7 +113,7 @@ googleSignInUI <- function(id, options = list()) {
 #'
 #' Handles decoding and verification of the authentication response received
 #' from the linked UI part, `googleSignInUI()`. Provides a reactive return value
-#' containing a list with the verified Google ID token's payload, or `NULL`.
+#' containing a list with the verified Google ID token's payload.
 #'
 #' The server module decodes and verifies the encoded Google ID JWT received
 #' from the UI module upon succesful completion of the authentication flow. See
@@ -132,11 +132,16 @@ googleSignInServer <- function(id, client_ids) {
   moduleServer(id, function(input, output, session) {
     verified_credential <- reactive({
       credential <- input$unverified_credential
-      if (!is.null(credential)) {
-        gsi_verify_credential(
+      if (is.null(credential)) {
+        NULL
+      } else {
+        try(gsi_verify_credential(
           credential = credential,
           client_ids = client_ids
-        )
+        )) -> payload
+
+        validate(need(payload, "Google ID token verification failed."))
+        payload
       }
     })
 

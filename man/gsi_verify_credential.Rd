@@ -12,7 +12,7 @@ gsi_verify_credential(credential, client_ids)
 \item{client_ids}{A character vector of recognized client IDs for your app.}
 }
 \value{
-\code{NULL} if verification failed, otherwise the decoded JWT payload.
+The decoded JWT payload. Throws an error if verification failed.
 }
 \description{
 Decode and verify an encoded Google ID token
