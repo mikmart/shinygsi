@@ -23,8 +23,7 @@ from the UI module upon succesful completion of the authentication flow. See
 \code{\link[=gsi_verify_credential]{gsi_verify_credential()}} for details about the verification process.
 }
 \seealso{
-\code{\link[=googleSignInUI]{googleSignInUI()}} for the module UI part. \code{\link[=gsi_user_info]{gsi_user_info()}} for
-extracting basic user details from the return value.
+\code{\link[=gsi_user_info]{gsi_user_info()}} for extracting user details from the return value.
 
 Other module functions: 
 \code{\link{googleSignInUI}()},

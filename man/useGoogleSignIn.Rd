@@ -30,8 +30,6 @@ provides details for the setup steps
 }
 }
 \seealso{
-The module parts: \code{\link[=googleSignInUI]{googleSignInUI()}} and \code{\link[=googleSignInServer]{googleSignInServer()}}.
-
 Other module functions: 
 \code{\link{googleSignInServer}()},
 \code{\link{googleSignInUI}()}

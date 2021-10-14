@@ -25,7 +25,6 @@ whenever new authentication information is received it gets passed to
 \strong{all} the sign in module inputs in the app.
 }
 \seealso{
-\code{\link[=googleSignInServer]{googleSignInServer()}} for the module server part.
 \code{\link[=googleSignInButton]{googleSignInButton()}} for details on the included button.
 
 Other module functions: 

@@ -13,8 +13,6 @@
 #' provides details for the setup steps
 #' (<https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid>).
 #'
-#' @seealso The module parts: [googleSignInUI()] and [googleSignInServer()].
-#'
 #' @references
 #' * <https://developers.google.com/identity/gsi/web/guides/display-button#html>
 #' * <https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_id_g_id_onload>
@@ -99,8 +97,7 @@ googleSignInButton <- function(inputId, options = list()) {
 #'   whenever new authentication information is received it gets passed to
 #'   **all** the sign in module inputs in the app.
 #'
-#' @seealso [googleSignInServer()] for the module server part.
-#'   [googleSignInButton()] for details on the included button.
+#' @seealso [googleSignInButton()] for details on the included button.
 #'
 #' @family module functions
 #' @export
@@ -124,8 +121,7 @@ googleSignInUI <- function(id, options = list()) {
 #' @inheritParams shiny::moduleServer
 #' @inheritParams gsi_verify_credential
 #'
-#' @seealso [googleSignInUI()] for the module UI part. [gsi_user_info()] for
-#'   extracting basic user details from the return value.
+#' @seealso [gsi_user_info()] for extracting user details from the return value.
 #'
 #' @family module functions
 #' @export
