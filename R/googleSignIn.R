@@ -16,22 +16,22 @@
 #' @references
 #' * [https://developers.google.com/identity/gsi/web/guides/display-button#html]()
 #' * [https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_id_g_id_onload]()
+#' @export
 useGoogleSignIn <- function(client_id, auto_prompt = TRUE) {
-  singleton(tags$head(
-    tags$script(src = "https://accounts.google.com/gsi/client", defer = "true"),
-    tags$script(HTML("
-      function handleGoogleSignInCredentialResponse(response) {
-        var signInButton = document.querySelector('.g_id_signin');
-        Shiny.onInputChange(signInButton.id, response.credential);
-      }
-    ")),
-    div(
-      id = "g_id_onload",
-      `data-client_id` = client_id,
-      `data-callback` = "handleGoogleSignInCredentialResponse",
-      `data-auto_prompt` = tolower(auto_prompt)
-    ),
-  ))
+  singleton(
+    tagList(
+      tags$head(
+        tags$script(src = "https://accounts.google.com/gsi/client", defer = "true"),
+        includeScript(system.file("js/shinygsi.js", package = "shinygsi")),
+      ),
+      div(
+        id = "g_id_onload",
+        `data-client_id` = client_id,
+        `data-callback` = "handleGoogleSignInCredentialResponse",
+        `data-auto_prompt` = tolower(auto_prompt)
+      ),
+    )
+  )
 }
 
 #' Create HTML for a Sign In With Google button
