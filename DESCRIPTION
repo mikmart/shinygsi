@@ -1,6 +1,6 @@
 Package: shinygsi
 Title: Integrate Sign In With Google with Shiny Apps
-Version: 0.0.0.9002
+Version: 0.0.0.9003
 Authors@R: 
     person(given = "Mikko",
            family = "Marttila",
@@ -22,3 +22,6 @@ Remotes:
     mikmart/httc
 URL: https://mikmart.github.io/shinygsi, https://github.com/mikmart/shinygsi
 BugReports: https://github.com/mikmart/shinygsi/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
