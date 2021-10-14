@@ -20,9 +20,9 @@ To render and function properly, you must call \code{\link[=useGoogleSignIn]{use
 somewhere in your UI code.
 }
 \details{
-Note that while you \emph{can} have several sign in UIs in the app,
-whenever new authentication information is received it gets passed to
-\strong{all} the sign in module inputs in the app.
+Note that while you \emph{can} have several sign in UIs in the app, whenever new
+authentication information is received it gets passed to \strong{all} the sign in
+module inputs in the app.
 }
 \seealso{
 \code{\link[=googleSignInButton]{googleSignInButton()}} for details on the included button.

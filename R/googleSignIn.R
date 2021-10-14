@@ -3,15 +3,15 @@
 #' Call this function at least once in your Shiny app UI to set up the necessary
 #' elements for Sign In With Google to work.
 #'
-#' @param client_id A string containing the client ID of your Google web app.
-#'   See Details for acquiring one.
-#' @param auto_prompt Logical. Should the Google One Tap prompt be displayed?
-#'
-#' @details # Client ID
+#' # Client ID
 #' In order to use Sign In With Google in Shiny, you need to register a client
 #' in a Google Cloud Platform project and set it up for OAuth use. Google
 #' provides details for the setup steps
 #' (<https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid>).
+#'
+#' @param client_id A string containing the client ID of your Google web app.
+#'   See Details for acquiring one.
+#' @param auto_prompt Logical. Should the Google One Tap prompt be displayed?
 #'
 #' @references
 #' * <https://developers.google.com/identity/gsi/web/guides/display-button#html>
@@ -75,7 +75,6 @@ useGoogleSignIn <- function(client_id, auto_prompt = TRUE) {
 #'     text = "continue_with"
 #'   )
 #' )
-#'
 #' @export
 googleSignInButton <- function(inputId, options = list()) {
   if (length(names(options)) > 0) {
@@ -91,13 +90,13 @@ googleSignInButton <- function(inputId, options = list()) {
 #' To render and function properly, you must call [useGoogleSignIn()]
 #' somewhere in your UI code.
 #'
+#' Note that while you _can_ have several sign in UIs in the app, whenever new
+#' authentication information is received it gets passed to **all** the sign in
+#' module inputs in the app.
+#'
 #' @inheritParams shiny::moduleServer
 #' @param options A list of customization options for the included
 #'   [googleSignInButton()].
-#'
-#' @details Note that while you _can_ have several sign in UIs in the app,
-#'   whenever new authentication information is received it gets passed to
-#'   **all** the sign in module inputs in the app.
 #'
 #' @seealso [googleSignInButton()] for details on the included button.
 #'

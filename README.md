@@ -7,7 +7,7 @@
 
 The goal of shinygsi is to make it easy to integrate Sign In With Google in your Shiny app for user authentication via the [Google Identity Services](https://developers.google.com/identity/gsi/web) Sign In API. shinygsi provides a simple Shiny module with the `googleSignInUI()` and `googleSignInServer()` pair, and an additional `useGoogleSignIn()` function to put the JavaScript in place that makes it all work in your app.
 
-In order to use Sign In With Google (with shinygsi or otherwise), you'll need to register your app and [obtain a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
+In order to use Sign In With Google, you'll need to register your app and [obtain a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
 
 ## Installation
 

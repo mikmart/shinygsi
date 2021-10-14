@@ -39,7 +39,6 @@ googleSignInButton(
     text = "continue_with"
   )
 )
-
 }
 \references{
 \itemize{
