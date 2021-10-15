@@ -1,6 +1,6 @@
 Package: shinygsi
 Title: Integrate Sign In With Google with Shiny Apps
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 Authors@R: 
     person(given = "Mikko",
            family = "Marttila",

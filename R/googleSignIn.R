@@ -30,7 +30,7 @@ useGoogleSignIn <- function(client_id, auto_prompt = TRUE, auto_select = TRUE) {
       div(
         id = "g_id_onload",
         `data-client_id` = client_id,
-        `data-callback` = "handleGoogleSignInCredentialResponse",
+        `data-callback` = "shinygsiHandleGoogleSignIn",
         `data-auto_prompt` = tolower(auto_prompt),
         `data-auto_select` = tolower(auto_select),
       ),
@@ -166,6 +166,7 @@ googleSignInApp <- function(client_id) {
     useGoogleSignIn(client_id = client_id),
     googleSignInUI("auth"),
     verbatimTextOutput("user_info"),
+    asGoogleSignOut(actionButton("sign_out", "Sign out")),
   )
 
   server <- function(input, output, session) {
