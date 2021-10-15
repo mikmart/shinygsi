@@ -10,7 +10,7 @@ googleSignInServer(id, client_ids)
 \item{id}{An ID string that corresponds with the ID used to call the module's
 UI function.}
 
-\item{client_ids}{A character vector of recognized client IDs for your app.}
+\item{client_ids}{A character vector of client IDs your app recognizes.}
 }
 \description{
 Handles decoding and verification of the authentication response received

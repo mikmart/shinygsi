@@ -1,18 +1,24 @@
 #' Decode and verify an encoded Google ID token
 #'
-#' @param credential A string containing an encoded Google ID JWT.
-#' @param client_ids A character vector of recognized client IDs for your app.
+#' @param credential A string with an encoded Google ID [JWT](https://jwt.io).
+#' @param client_ids A character vector of client IDs your app recognizes.
+#' @param public_keys A list of public keys tried to verify the `credential`
+#'   signature. Objects, or paths to read with [openssl::read_pubkey()]. If
+#'   left `NULL`, fetch Google's current public keys from their API.
 #'
-#' @return The decoded JWT payload. Throws an error if verification failed.
+#' @return The decoded JWT payload. Signals an error if verification failed.
 #'
 #' @seealso [gsi_user_info()] for extracting user details from the decoded JWT.
 #' @references
 #' * <https://developers.google.com/identity/gsi/web/guides/verify-google-id-token>
 #'
+#' @importFrom rlang %||%
 #' @export
-gsi_verify_credential <- function(credential, client_ids) {
-  # Check all keys -- the token could be signed with either.
-  for (key in google_public_keys()) {
+gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
+  public_keys <- public_keys %||% google_public_keys()
+
+  # Decode, and try to verify with all keys -- could be signed with any.
+  for (key in public_keys) {
     payload <- tryCatch(
       rlang::with_abort(
         jose::jwt_decode_sig(credential, key)
@@ -24,7 +30,6 @@ gsi_verify_credential <- function(credential, client_ids) {
     if (!rlang::is_condition(payload)) break
   }
 
-  # Check if decoding or signature verification failed
   if (rlang::is_condition(payload)) {
     abort_verification(
       message = "Decoding or signature verification failed.",

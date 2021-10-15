@@ -4,15 +4,19 @@
 \alias{gsi_verify_credential}
 \title{Decode and verify an encoded Google ID token}
 \usage{
-gsi_verify_credential(credential, client_ids)
+gsi_verify_credential(credential, client_ids, public_keys = NULL)
 }
 \arguments{
-\item{credential}{A string containing an encoded Google ID JWT.}
+\item{credential}{A string with an encoded Google ID \href{https://jwt.io}{JWT}.}
 
-\item{client_ids}{A character vector of recognized client IDs for your app.}
+\item{client_ids}{A character vector of client IDs your app recognizes.}
+
+\item{public_keys}{A list of public keys tried to verify the \code{credential}
+signature. Objects, or paths to read with \code{\link[openssl:read_key]{openssl::read_pubkey()}}. If
+left \code{NULL}, fetch Google's current public keys from their API.}
 }
 \value{
-The decoded JWT payload. Throws an error if verification failed.
+The decoded JWT payload. Signals an error if verification failed.
 }
 \description{
 Decode and verify an encoded Google ID token
