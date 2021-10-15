@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set up a Shiny app to use Sign In With Google — useGoogleSignIn • shinygsi</title>
+<title>Trigger a Google sign-out from server-side — sendGoogleSignOut • shinygsi</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Set up a Shiny app to use Sign In With Google — useGoogleSignIn" />
-<meta property="og:description" content="Call this function at least once in your Shiny app UI to set up the necessary
-elements for Sign In With Google to work." />
+<meta property="og:title" content="Trigger a Google sign-out from server-side — sendGoogleSignOut" />
+<meta property="og:description" content="Trigger a Google sign-out from server-side" />
 
 
 
@@ -109,55 +108,34 @@ elements for Sign In With Google to work." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set up a Shiny app to use Sign In With Google</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mikmart/shinygsi/blob/master/R/googleSignIn.R'><code>R/googleSignIn.R</code></a></small>
-    <div class="hidden name"><code>useGoogleSignIn.Rd</code></div>
+    <h1>Trigger a Google sign-out from server-side</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mikmart/shinygsi/blob/master/R/googleSignOut.R'><code>R/googleSignOut.R</code></a></small>
+    <div class="hidden name"><code>sendGoogleSignOut.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Call this function at least once in your Shiny app UI to set up the necessary
-elements for Sign In With Google to work.</p>
+    <p>Trigger a Google sign-out from server-side</p>
     </div>
 
-    <pre class="usage"><span class='fu'>useGoogleSignIn</span><span class='op'>(</span><span class='va'>client_id</span>, auto_prompt <span class='op'>=</span> <span class='cn'>TRUE</span>, auto_select <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>sendGoogleSignOut</span><span class='op'>(</span>session <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>client_id</th>
-      <td><p>A string containing the client ID of your Google web app.
-See Details for acquiring one.</p></td>
-    </tr>
-    <tr>
-      <th>auto_prompt</th>
-      <td><p>Logical. Should the Google One Tap prompt be displayed?</p></td>
-    </tr>
-    <tr>
-      <th>auto_select</th>
-      <td><p>Logical. Should automatic sign-in be enabled?</p></td>
+      <th>session</th>
+      <td><p>The <code><a href='https://rdrr.io/pkg/shiny/man/session.html'>shiny::session</a></code> object.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="client-id"><a class="anchor" href="#client-id"></a>Client ID</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>In order to use Sign In With Google in Shiny, you need to register a client
-in a Google Cloud Platform project and set it up for OAuth use. Google
-provides details for the setup steps
-(<a href='https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid'>https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid</a>).</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    
-<ul>
-<li><p><a href='https://developers.google.com/identity/gsi/web/guides/display-button#html'>https://developers.google.com/identity/gsi/web/guides/display-button#html</a></p></li>
-<li><p><a href='https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_id_g_id_onload'>https://developers.google.com/identity/gsi/web/reference/html-reference#element_with_id_g_id_onload</a></p></li>
-</ul>
-
+    <p>A sign-out will clear all <code><a href='googleSignInButton.html'>googleSignInButton()</a></code> inputs, and prevent
+automatic sign-in from happening afterwards.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other module functions: 
-<code><a href='googleSignInServer.html'>googleSignInServer</a>()</code>,
-<code><a href='googleSignInUI.html'>googleSignInUI</a>()</code></p></div>
+    <div class='dont-index'><p>Other sign-out methods: 
+<code><a href='asGoogleSignOut.html'>asGoogleSignOut</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -4,6 +4,9 @@
     <loc>https://mikmart.github.io/shinygsi/index.html</loc>
   </url>
   <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/asGoogleSignOut.html</loc>
+  </url>
+  <url>
     <loc>https://mikmart.github.io/shinygsi/reference/googleSignInApp.html</loc>
   </url>
   <url>
@@ -23,6 +26,9 @@
   </url>
   <url>
     <loc>https://mikmart.github.io/shinygsi/reference/gsi_verify_credential.html</loc>
+  </url>
+  <url>
+    <loc>https://mikmart.github.io/shinygsi/reference/sendGoogleSignOut.html</loc>
   </url>
   <url>
     <loc>https://mikmart.github.io/shinygsi/reference/shinygsi-package.html</loc>
