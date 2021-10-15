@@ -25,5 +25,7 @@ Remotes:
 URL: https://mikmart.github.io/shinygsi, https://github.com/mikmart/shinygsi
 BugReports: https://github.com/mikmart/shinygsi/issues
 Suggests: 
+    webmockr,
+    openssl,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

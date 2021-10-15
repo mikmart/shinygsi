@@ -42,7 +42,7 @@ gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
   checks_passed <- c(
     iss = payload$iss %in% paste0(c("", "https://"), "accounts.google.com"),
     aud = payload$aud %in% client_ids,
-    exp = payload$exp > Sys.time()
+    exp = isTRUE(payload$exp > Sys.time())
   )
 
   if (!all(checks_passed)) {
@@ -72,7 +72,7 @@ abort_verification <- function(message, ..., class = character()) {
 #' @keywords internal
 google_public_keys <- function() {
   response <- httc::GET("https://www.googleapis.com/oauth2/v3/certs")
-  json_keys <- httr::content(response, "parsed")$keys
+  json_keys <- httr::content(response, type = "application/json")$keys
   lapply(json_keys, jose::read_jwk)
 }
 
