@@ -1,13 +1,14 @@
 Package: shinygsi
-Title: Integrate Sign In With Google with Shiny Apps
+Title: Use Sign In With Google in Shiny Apps
 Version: 0.0.0.9005
 Authors@R: 
     person(given = "Mikko",
            family = "Marttila",
            role = c("aut", "cre"),
            email = "mikkmart@pm.me")
-Description: Use Sign In With Google in your Shiny app to authenticate users,
-    and get their basic information.
+Description: A Shiny module to easily integrate authentication provided by
+    Google Identity Services in your app. Features include a personalized
+    sign-in button, the Google One Tap prompt, and automatic sign-in.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

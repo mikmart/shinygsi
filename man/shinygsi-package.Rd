@@ -4,9 +4,9 @@
 \name{shinygsi-package}
 \alias{shinygsi}
 \alias{shinygsi-package}
-\title{shinygsi: Integrate Sign In With Google with Shiny Apps}
+\title{shinygsi: Use Sign In With Google in Shiny Apps}
 \description{
-Use Sign In With Google in your Shiny app to authenticate users, and get their basic information.
+A Shiny module to easily integrate authentication provided by Google Identity Services in your app. Features include a personalized sign-in button, the Google One Tap prompt, and automatic sign-in.
 }
 \seealso{
 Useful links:
