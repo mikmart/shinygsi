@@ -30,6 +30,5 @@ asGoogleSignOut <- function(tag) {
 #' @family sign-out methods
 #' @export
 sendGoogleSignOut <- function(session = getDefaultReactiveDomain()) {
-  # There's really no message, but can't send NULL or it doesn't work.
-  session$sendCustomMessage("shinygsi:signout", TRUE)
+  session$sendCustomMessage("shinygsi:signout", NA)
 }
