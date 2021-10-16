@@ -17,7 +17,8 @@
 gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
   public_keys <- public_keys %||% google_public_keys()
 
-  # Decode, and try to verify with all keys -- could be signed with any.
+  # Decode token, and verify that it is signed by Google.
+  # Check all public keys, as it could be signed with any.
   for (key in public_keys) {
     payload <- tryCatch(
       rlang::with_abort(
@@ -26,7 +27,7 @@ gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
       error = identity
     )
 
-    # Don't need to check others if one succeeded
+    # Stop on success -- others won't work.
     if (!rlang::is_condition(payload)) break
   }
 
@@ -38,21 +39,25 @@ gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
     )
   }
 
-  # Check if payload fulfills conditions
-  checks_passed <- c(
+  # Check claims included in the token
+  claims_valid <- c(
+    # Token is issued by Google Accounts
     iss = payload$iss %in% paste0(c("", "https://"), "accounts.google.com"),
-    aud = payload$aud %in% client_ids,
+
+    # Intended audience includes this app
+    aud = any(client_ids %in% payload$aud),
+
+    # Token has not already expired
     exp = isTRUE(payload$exp > Sys.time())
   )
 
-  if (!all(checks_passed)) {
+  if (!all(claims_valid)) {
     abort_verification(
-      message = "Payload checks failed.",
+      message = "Token includes invalid claims.",
       data = list(
-        payload = payload,
-        checks = checks_passed
+        invalid_claims = payload[names(which(!claims_valid))]
       ),
-      class = "gsi_payload_error"
+      class = "gsi_invalid_claims_error"
     )
   }
 

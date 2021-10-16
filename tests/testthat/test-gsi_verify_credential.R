@@ -50,21 +50,21 @@ test_that("verifying token from incorrect issuer fails", {
   claim <- valid_claim()
   claim$iss <- "drive.google.com"
   verify_signed(claim) %>%
-    expect_error(class = "gsi_payload_error")
+    expect_error(class = "gsi_invalid_claims_error")
 })
 
 test_that("verifying token for unrecognized client fails", {
   claim <- valid_claim()
   claim$aud <- "FAKE-CLIENT.apps.googleusercontent.com"
   verify_signed(claim) %>%
-    expect_error(class = "gsi_payload_error")
+    expect_error(class = "gsi_invalid_claims_error")
 })
 
 test_that("verifying expired token fails", {
   claim <- valid_claim()
   claim$exp <- as.double(Sys.time() - 3600)
   verify_signed(claim) %>%
-    expect_error(class = "gsi_payload_error")
+    expect_error(class = "gsi_invalid_claims_error")
 })
 
 test_that("can get public keys from the web", {
