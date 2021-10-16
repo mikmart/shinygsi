@@ -15,13 +15,11 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
-    httc (>= 0.0.1),
+    cachem,
     httr,
     jose,
     rlang,
     shiny
-Remotes: 
-    mikmart/httc
 URL: https://mikmart.github.io/shinygsi, https://github.com/mikmart/shinygsi
 BugReports: https://github.com/mikmart/shinygsi/issues
 Suggests: 

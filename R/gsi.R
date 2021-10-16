@@ -63,17 +63,39 @@ abort_verification <- function(message, ..., class = character()) {
   rlang::abort(message, ..., class = c(class, "gsi_verification_error"))
 }
 
-#' Get Google's JWK public key for verifying signatures
+#' Get Google's JWK public key
 #'
 #' Get Google's JWK public key via an API call. The result is cached according
-#' to the `Cache-Control` header with the [httc] package.
+#' to the `Cache-Control` header. Used to verify JWT signatures.
 #'
 #' @return An OpenSSL RSA public key object. See [openssl::rsa_keygen()].
 #' @keywords internal
-google_public_keys <- function() {
-  response <- httc::GET("https://www.googleapis.com/oauth2/v3/certs")
-  json_keys <- httr::content(response, type = "application/json")$keys
-  lapply(json_keys, jose::read_jwk)
+google_public_keys <- function(cache = getOption("shinygsi.cache")) {
+  handle_keys_response <- function(response) {
+    lapply(httr::content(response)$keys, jose::read_jwk)
+  }
+
+  cached_result <- cache$get("google_public_keys")
+  cached_response <- attr(cached_result, "response")
+
+  if (cachem::is.key_missing(cached_result)) {
+    response <- httr::GET("https://www.googleapis.com/oauth2/v3/certs")
+  } else {
+    response <- httr::rerequest(cached_response)
+  }
+
+  if (identical(response, cached_response)) {
+    result <- cached_result
+  } else {
+    result <- handle_keys_response(response)
+    cache$set("google_public_keys", http_cache_item(result, response))
+  }
+
+  result
+}
+
+http_cache_item <- function(x, response) {
+  structure(x, response = response, class = c("http_cache_item", class(x)))
 }
 
 

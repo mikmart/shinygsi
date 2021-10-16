@@ -2,15 +2,15 @@
 % Please edit documentation in R/gsi.R
 \name{google_public_keys}
 \alias{google_public_keys}
-\title{Get Google's JWK public key for verifying signatures}
+\title{Get Google's JWK public key}
 \usage{
-google_public_keys()
+google_public_keys(cache = getOption("shinygsi.cache"))
 }
 \value{
 An OpenSSL RSA public key object. See \code{\link[openssl:keygen]{openssl::rsa_keygen()}}.
 }
 \description{
 Get Google's JWK public key via an API call. The result is cached according
-to the \code{Cache-Control} header with the \link{httc} package.
+to the \code{Cache-Control} header. Used to verify JWT signatures.
 }
 \keyword{internal}
