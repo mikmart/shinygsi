@@ -72,7 +72,8 @@ abort_verification <- function(message, ..., class = character()) {
 #' @keywords internal
 google_public_keys <- function(cache = getOption("shinygsi.cache")) {
   handle_keys_response <- function(response) {
-    lapply(httr::content(response)$keys, jose::read_jwk)
+    json <- httr::content(response, type = "application/json")
+    lapply(json$keys, jose::read_jwk)
   }
 
   cached_result <- cache$get("google_public_keys")
