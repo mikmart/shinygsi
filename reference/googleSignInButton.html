@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Create HTML for a Sign In With Google button — googleSignInButton" />
-<meta property="og:description" content="Creates the HTML element for displaying a Sign In With Google button. Most of
+<meta property="og:description" content="Creates an HTML element for displaying a Sign In With Google button. Most of
 the time you probably don't want to use this directly, but through the
 googleSignInUI() module instead." />
 
@@ -116,7 +116,7 @@ googleSignInUI() module instead." />
     </div>
 
     <div class="ref-description">
-    <p>Creates the HTML element for displaying a Sign In With Google button. Most of
+    <p>Creates an HTML element for displaying a Sign In With Google button. Most of
 the time you probably don't want to use this directly, but through the
 <code><a href='googleSignInUI.html'>googleSignInUI()</a></code> module instead.</p>
     </div>
@@ -142,9 +142,9 @@ for possible values.</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The given <code>inputId</code> receives the encoded Google ID JWT value. Most of the
-time you may want to use <code><a href='googleSignInUI.html'>googleSignInUI()</a></code> paired with the server module
-<code><a href='googleSignInServer.html'>googleSignInServer()</a></code> instead to decode and verify the token.</p>
+    <p>The given <code>inputId</code> receives the encoded Google ID <a href='https://jwt.io'>JWT</a>
+value. Most of the time you probably want <code><a href='googleSignInUI.html'>googleSignInUI()</a></code> paired with the
+server module <code><a href='googleSignInServer.html'>googleSignInServer()</a></code> instead to decode and verify the token.</p>
 <p>Note that while you <em>can</em> have several buttons in an app, whenever new
 authentication information is received it gets passed to <strong>all</strong> the
 <code>googleSignInButton()</code> inputs in the app.</p>

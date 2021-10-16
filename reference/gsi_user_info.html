@@ -131,7 +131,16 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list with fields describing basic user data for the Google user, or
-<code>NULL</code> if given a <code>NULL</code> value as <code>credential</code>.</p>
+<code>NULL</code> if <code>credential</code> is <code>NULL</code>. Included fields are:</p><ul>
+<li><p><code>user_id</code> A string with Google's unique user ID.</p></li>
+<li><p><code>email</code> User's current email address.</p></li>
+<li><p><code>email_verified</code> Logical. Has the email address been verified?</p></li>
+<li><p><code>full_name</code> User's current full name.</p></li>
+<li><p><code>given_name</code> User's current given name.</p></li>
+<li><p><code>family_name</code> User's current family name.</p></li>
+<li><p><code>picture_url</code> A URL to get the user's current profile picture.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='gsi_verify_credential.html'>gsi_verify_credential()</a></code> for decoding and verifying an encoded
