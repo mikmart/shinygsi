@@ -99,6 +99,8 @@ google_public_keys <- function() {
 gsi_user_info <- function(credential) {
   if (is.null(credential)) {
     NULL
+  } else if (!is.list(credential)) {
+    rlang::abort("`credential` must be a list.")
   } else {
     list(
       user_id = credential$sub,
