@@ -22,7 +22,7 @@ remotes::install_github("mikmart/shinygsi")
 
 ## Usage
 
-### Sign-in
+### Sign in
 
 First, make sure you have [a Google API client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid) to use with your app. Then, normally you need to:
 
@@ -32,7 +32,7 @@ First, make sure you have [a Google API client ID](https://developers.google.com
 
 You can use `gsi_user_info()` to extract basic user details from the decoded authentication information.
 
-### Sign-out
+### Sign out
 
 Signing out clears all `googleSignInButton()` inputs. A sign-out can be triggered in two ways:
 
@@ -76,5 +76,5 @@ googleSignInApp(client_id = GAPI_CLIENT_ID)
 
 ## Prior art
 
-* [googleAuthR](https://cran.r-project.org/package=googleAuthR) also offers a [`googleSignIn`](https://code.markedmondson.me/googleAuthR/reference/googleSignIn.html) module, but it uses the [older deprecating JavaScript library](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html).
+* [googleAuthR](https://cran.r-project.org/package=googleAuthR) also offers a [`googleSignIn`](https://code.markedmondson.me/googleAuthR/reference/googleSignIn.html) module, but it uses [the older deprecating JavaScript library](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html).
 * [gargle](https://cran.r-project.org/package=gargle) offers more generic tools for working with Google APIs.

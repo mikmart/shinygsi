@@ -7,12 +7,12 @@
 useGoogleSignIn(client_id, auto_prompt = TRUE, auto_select = TRUE)
 }
 \arguments{
-\item{client_id}{A string containing the client ID of your Google web app.
+\item{client_id}{A string containing the Google API client ID of your app.
 See Details for acquiring one.}
 
-\item{auto_prompt}{Logical. Should the Google One Tap prompt be displayed?}
+\item{auto_prompt}{Logical. Should \href{https://developers.google.com/identity/gsi/web/guides/features}{the Google One Tap prompt} be displayed?}
 
-\item{auto_select}{Logical. Should automatic sign-in be enabled?}
+\item{auto_select}{Logical. Should \href{https://developers.google.com/identity/gsi/web/guides/automatic-sign-in-sign-out}{automatic sign-in} be enabled?}
 }
 \description{
 Call this function at least once in your Shiny app UI to set up the necessary
@@ -20,9 +20,8 @@ elements for Sign In With Google to work.
 }
 \section{Client ID}{
 In order to use Sign In With Google in Shiny, you need to register a client
-in a Google Cloud Platform project and set it up for OAuth use. Google
-provides details for the setup steps
-(\url{https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid}).
+in a Google Cloud Platform project and set it up for OAuth use. You can find
+details for the process in \href{https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid}{Google's setup guide}.
 }
 
 \references{

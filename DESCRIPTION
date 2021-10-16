@@ -1,5 +1,5 @@
 Package: shinygsi
-Title: Use Sign In With Google in Shiny Apps
+Title: Sign In With Google in Shiny Apps
 Version: 0.0.0.9006
 Authors@R: 
     person(given = "Mikko",

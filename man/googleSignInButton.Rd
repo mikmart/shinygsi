@@ -16,14 +16,14 @@ See Examples for usage and \href{https://developers.google.com/identity/gsi/web/
 for possible values.}
 }
 \description{
-Creates the HTML element for displaying a Sign In With Google button. Most of
+Creates an HTML element for displaying a Sign In With Google button. Most of
 the time you probably don't want to use this directly, but through the
 \code{googleSignInUI()} module instead.
 }
 \details{
-The given \code{inputId} receives the encoded Google ID JWT value. Most of the
-time you may want to use \code{googleSignInUI()} paired with the server module
-\code{googleSignInServer()} instead to decode and verify the token.
+The given \code{inputId} receives the encoded Google ID \href{https://jwt.io}{JWT}
+value. Most of the time you probably want \code{googleSignInUI()} paired with the
+server module \code{googleSignInServer()} instead to decode and verify the token.
 
 Note that while you \emph{can} have several buttons in an app, whenever new
 authentication information is received it gets passed to \strong{all} the

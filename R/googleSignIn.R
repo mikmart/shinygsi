@@ -5,14 +5,13 @@
 #'
 #' # Client ID
 #' In order to use Sign In With Google in Shiny, you need to register a client
-#' in a Google Cloud Platform project and set it up for OAuth use. Google
-#' provides details for the setup steps
-#' (<https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid>).
+#' in a Google Cloud Platform project and set it up for OAuth use. You can find
+#' details for the process in [Google's setup guide](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid).
 #'
-#' @param client_id A string containing the client ID of your Google web app.
+#' @param client_id A string containing the Google API client ID of your app.
 #'   See Details for acquiring one.
-#' @param auto_prompt Logical. Should the Google One Tap prompt be displayed?
-#' @param auto_select Logical. Should automatic sign-in be enabled?
+#' @param auto_prompt Logical. Should [the Google One Tap prompt](https://developers.google.com/identity/gsi/web/guides/features) be displayed?
+#' @param auto_select Logical. Should [automatic sign-in](https://developers.google.com/identity/gsi/web/guides/automatic-sign-in-sign-out) be enabled?
 #'
 #' @references
 #' * <https://developers.google.com/identity/gsi/web/guides/display-button#html>
@@ -40,13 +39,13 @@ useGoogleSignIn <- function(client_id, auto_prompt = TRUE, auto_select = TRUE) {
 
 #' Create HTML for a Sign In With Google button
 #'
-#' Creates the HTML element for displaying a Sign In With Google button. Most of
+#' Creates an HTML element for displaying a Sign In With Google button. Most of
 #' the time you probably don't want to use this directly, but through the
 #' `googleSignInUI()` module instead.
 #'
-#' The given `inputId` receives the encoded Google ID JWT value. Most of the
-#' time you may want to use `googleSignInUI()` paired with the server module
-#' `googleSignInServer()` instead to decode and verify the token.
+#' The given `inputId` receives the encoded Google ID [JWT](https://jwt.io)
+#' value. Most of the time you probably want `googleSignInUI()` paired with the
+#' server module `googleSignInServer()` instead to decode and verify the token.
 #'
 #' Note that while you _can_ have several buttons in an app, whenever new
 #' authentication information is received it gets passed to **all** the

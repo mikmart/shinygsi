@@ -76,12 +76,21 @@ google_public_keys <- function() {
   lapply(json_keys, jose::read_jwk)
 }
 
+
 #' Get user details from a Google ID token
 #'
 #' @param credential A list containing a decoded Google ID token.
 #'
 #' @return A list with fields describing basic user data for the Google user, or
-#'   `NULL` if given a `NULL` value as `credential`.
+#'   `NULL` if `credential` is `NULL`. Included fields are:
+#'
+#'    * `user_id` A string with Google's unique user ID.
+#'    * `email` User's current email address.
+#'    * `email_verified` Logical. Has the email address been verified?
+#'    * `full_name` User's current full name.
+#'    * `given_name` User's current given name.
+#'    * `family_name` User's current family name.
+#'    * `picture_url` A URL to get the user's current profile picture.
 #'
 #' @seealso `gsi_verify_credential()` for decoding and verifying an encoded
 #'   Google ID JWT.

@@ -11,7 +11,16 @@ gsi_user_info(credential)
 }
 \value{
 A list with fields describing basic user data for the Google user, or
-\code{NULL} if given a \code{NULL} value as \code{credential}.
+\code{NULL} if \code{credential} is \code{NULL}. Included fields are:
+\itemize{
+\item \code{user_id} A string with Google's unique user ID.
+\item \code{email} User's current email address.
+\item \code{email_verified} Logical. Has the email address been verified?
+\item \code{full_name} User's current full name.
+\item \code{given_name} User's current given name.
+\item \code{family_name} User's current family name.
+\item \code{picture_url} A URL to get the user's current profile picture.
+}
 }
 \description{
 Get user details from a Google ID token

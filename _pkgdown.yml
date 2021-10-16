@@ -5,9 +5,12 @@ template:
     bootswatch: flatly
 
 reference:
-  - title: Module functions
+  - title: Sign in
     contents:
       - has_concept("module functions")
+  - title: Sign out
+    contents:
+      - has_concept("sign-out methods")
   - title: Other functions
     contents:
-      - lacks_concepts("module functions")
+      - lacks_concepts(c("module functions", "sign-out methods"))

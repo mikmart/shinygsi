@@ -7,7 +7,7 @@
 googleSignInApp(client_id)
 }
 \arguments{
-\item{client_id}{A string containing the client ID of your Google web app.
+\item{client_id}{A string containing the Google API client ID of your app.
 See Details for acquiring one.}
 }
 \description{
@@ -15,9 +15,8 @@ A demo Shiny app for using Sign In With Google
 }
 \section{Client ID}{
 In order to use Sign In With Google in Shiny, you need to register a client
-in a Google Cloud Platform project and set it up for OAuth use. Google
-provides details for the setup steps
-(\url{https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid}).
+in a Google Cloud Platform project and set it up for OAuth use. You can find
+details for the process in \href{https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid}{Google's setup guide}.
 }
 
 \seealso{
