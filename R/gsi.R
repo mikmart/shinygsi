@@ -76,7 +76,7 @@ gsi_verify <- function(verifier, token) {
   # Check claims included in the token
   claims_valid <- c(
     # Token is issued by Google Accounts
-    iss = claims$iss %in% verifier$issuers,
+    iss = any(verifier$issuers %in% claims$iss),
 
     # Intended audience includes this app
     aud = any(verifier$client_ids %in% claims$aud),
