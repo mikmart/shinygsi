@@ -4,13 +4,21 @@
 \alias{googleSignInServer}
 \title{Server side for a Sign In With Google module}
 \usage{
-googleSignInServer(id, client_ids)
+googleSignInServer(id, ...)
 }
 \arguments{
 \item{id}{An ID string that corresponds with the ID used to call the module's
 UI function.}
 
-\item{client_ids}{A character vector of client IDs your app recognizes.}
+\item{...}{
+  Arguments passed on to \code{\link[=gsi_verifier]{gsi_verifier}}
+  \describe{
+    \item{\code{client_ids}}{A character vector of client IDs your app recognizes.}
+    \item{\code{public_keys}}{A list of public keys tried for signature verification,
+or a function that returns them. Keys can be objects, or paths to read
+with \code{\link[openssl:read_key]{openssl::read_pubkey()}}. If left \code{NULL}, fetch Google's current
+public keys from their API when verifying.}
+  }}
 }
 \description{
 Handles decoding and verification of the authentication response received
@@ -20,7 +28,7 @@ containing a list with the verified Google ID token's payload.
 \details{
 The server module decodes and verifies the encoded Google ID JWT received
 from the UI module upon succesful completion of the authentication flow. See
-\code{\link[=gsi_verify_credential]{gsi_verify_credential()}} for details about the verification process.
+\code{\link[=gsi_verify]{gsi_verify()}} for details about the verification process.
 }
 \seealso{
 \code{\link[=gsi_user_info]{gsi_user_info()}} for extracting user details from the return value.

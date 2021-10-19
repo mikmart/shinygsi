@@ -1,10 +1,47 @@
+#' Create a verifier for verifying ID tokens
+#'
+#' @param client_ids A character vector of client IDs your app recognizes.
+#' @param public_keys A list of public keys tried for signature verification,
+#'   or a function that returns them. Keys can be objects, or paths to read
+#'   with [openssl::read_pubkey()]. If left `NULL`, fetch Google's current
+#'   public keys from their API when verifying.
+#'
+#' @seealso `gsi_verify()` for performing the verification.
+#'
+#' @examples
+#' gsi_verifier()
+#' @export
+gsi_verifier <- function(client_ids = character(), public_keys = NULL) {
+  if (is.function(public_keys)) {
+    get_public_keys <- function() public_keys()
+  } else if (is.null(public_keys)) {
+    get_public_keys <- function() google_public_keys()
+  } else {
+    get_public_keys <- function() public_keys
+  }
+
+  structure(
+    list(
+      client_ids = client_ids,
+      get_public_keys = get_public_keys,
+      issuers = paste0(c("", "https://"), "accounts.google.com")
+    ),
+    class = "gsi_verifier"
+  )
+}
+
+#' @export
+print.gsi_verifier <- function(x, ...) {
+  cat("<gsi_verifier>\n")
+  str(unclass(x))
+  invisible(x)
+}
+
+
 #' Decode and verify an encoded Google ID token
 #'
-#' @param credential A string with an encoded Google ID [JWT](https://jwt.io).
-#' @param client_ids A character vector of client IDs your app recognizes.
-#' @param public_keys A list of public keys tried to verify the `credential`
-#'   signature. Objects, or paths to read with [openssl::read_pubkey()]. If
-#'   left `NULL`, fetch Google's current public keys from their API.
+#' @param verifier A verifier object. See `gsi_verifier()`.
+#' @param token A string with an encoded Google ID [JWT](https://jwt.io).
 #'
 #' @return The decoded JWT payload. Signals an error if verification failed.
 #'
@@ -12,29 +49,26 @@
 #' @references
 #' * <https://developers.google.com/identity/gsi/web/guides/verify-google-id-token>
 #'
-#' @importFrom rlang %||%
 #' @export
-gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
-  public_keys <- public_keys %||% google_public_keys()
-
+gsi_verify <- function(verifier, token) {
   # Decode token, and verify that it is signed by Google.
   # Check all public keys, as it could be signed with any.
-  for (key in public_keys) {
-    payload <- tryCatch(
+  for (key in verifier$get_public_keys()) {
+    claims <- tryCatch(
       rlang::with_abort(
-        jose::jwt_decode_sig(credential, key)
+        jose::jwt_decode_sig(token, key)
       ),
       error = identity
     )
 
     # Stop on success -- others won't work.
-    if (!rlang::is_condition(payload)) break
+    if (!rlang::is_condition(claims)) break
   }
 
-  if (rlang::is_condition(payload)) {
+  if (rlang::is_condition(claims)) {
     abort_verification(
       message = "Decoding or signature verification failed.",
-      parent = payload,
+      parent = claims,
       class = "gsi_decode_sig_error"
     )
   }
@@ -42,26 +76,26 @@ gsi_verify_credential <- function(credential, client_ids, public_keys = NULL) {
   # Check claims included in the token
   claims_valid <- c(
     # Token is issued by Google Accounts
-    iss = payload$iss %in% paste0(c("", "https://"), "accounts.google.com"),
+    iss = claims$iss %in% verifier$issuers,
 
     # Intended audience includes this app
-    aud = any(client_ids %in% payload$aud),
+    aud = any(verifier$client_ids %in% claims$aud),
 
     # Token has not already expired
-    exp = isTRUE(payload$exp > Sys.time())
+    exp = isTRUE(claims$exp > Sys.time())
   )
 
   if (!all(claims_valid)) {
     abort_verification(
       message = "Token includes invalid claims.",
       data = list(
-        invalid_claims = payload[names(which(!claims_valid))]
+        invalid_claims = claims[names(which(!claims_valid))]
       ),
       class = "gsi_invalid_claims_error"
     )
   }
 
-  payload
+  claims
 }
 
 abort_verification <- function(message, ..., class = character()) {
@@ -80,7 +114,6 @@ google_public_keys <- function() {
   json_keys <- httr::content(response, type = "application/json")$keys
   lapply(json_keys, jose::read_jwk)
 }
-
 
 #' Get user details from a Google ID token
 #'

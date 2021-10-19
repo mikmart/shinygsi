@@ -118,29 +118,25 @@ googleSignInUI <- function(id, options = list()) {
 #'
 #' The server module decodes and verifies the encoded Google ID JWT received
 #' from the UI module upon succesful completion of the authentication flow. See
-#' [gsi_verify_credential()] for details about the verification process.
+#' [gsi_verify()] for details about the verification process.
 #'
 #' @inheritParams shiny::moduleServer
-#' @inheritParams gsi_verify_credential
+#' @inheritDotParams gsi_verifier
 #'
 #' @seealso [gsi_user_info()] for extracting user details from the return value.
 #'
 #' @family module functions
 #' @export
-googleSignInServer <- function(id, client_ids) {
-  stopifnot(!is.reactive(client_ids))
-
+googleSignInServer <- function(id, ...) {
   moduleServer(id, function(input, output, session) {
+    verifier <- gsi_verifier(...)
+
     verified_credential <- reactive({
       credential <- input$unverified_credential
       if (is.null(credential)) {
         NULL
       } else {
-        try(gsi_verify_credential(
-          credential = credential,
-          client_ids = client_ids
-        )) -> payload
-
+        payload <- try(gsi_verify(verifier, credential))
         validate(need(payload, "Google ID token verification failed."))
         payload
       }

@@ -1,5 +1,6 @@
 #' @keywords internal
 #' @import shiny
+#' @importFrom rlang %||%
 "_PACKAGE"
 
 # The following block is used by usethis to automatically manage
