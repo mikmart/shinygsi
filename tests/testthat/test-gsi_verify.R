@@ -4,20 +4,20 @@ test_that("can decode and verify valid tokens", {
   verify(sign(claim, private_key_2)) %>% expect_equal(claim)
 })
 
-test_that("verifying faked token fails", {
+test_that("incorrect signature fails", {
   random_private_key <- openssl::rsa_keygen()
   verify(sign(valid_claim(), random_private_key)) %>%
     expect_error(class = "gsi_decode_sig_error")
 })
 
-test_that("verifying token from other valid issuers succeeds", {
+test_that("other valid issuers succeeds", {
   claim <- valid_claim()
   claim$iss <- "https://accounts.google.com"
   verify(sign(claim)) %>%
     expect_equal(claim)
 })
 
-test_that("verifying token from incorrect issuer fails", {
+test_that("incorrect issuer fails", {
   claim <- valid_claim()
 
   claim$iss <- "drive.google.com"
@@ -29,7 +29,7 @@ test_that("verifying token from incorrect issuer fails", {
     expect_error(class = "gsi_invalid_claims_error")
 })
 
-test_that("verifying token for unrecognized client fails", {
+test_that("unrecognized client fails", {
   claim <- valid_claim()
 
   claim$aud <- "FAKE-CLIENT.apps.googleusercontent.com"
@@ -41,7 +41,7 @@ test_that("verifying token for unrecognized client fails", {
     expect_error(class = "gsi_invalid_claims_error")
 })
 
-test_that("verifying expired token fails", {
+test_that("expired token fails", {
   claim <- valid_claim()
 
   claim$exp <- as.double(Sys.time() - 3600)
