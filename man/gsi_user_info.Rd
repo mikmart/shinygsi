@@ -26,6 +26,5 @@ A list with fields describing basic user data for the Google user, or
 Get user details from a Google ID token
 }
 \seealso{
-\code{gsi_verify_credential()} for decoding and verifying an encoded
-Google ID JWT.
+\code{gsi_verify()} for decoding and verifying an encoded Google ID JWT.
 }

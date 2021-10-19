@@ -130,8 +130,7 @@ google_public_keys <- function() {
 #'    * `family_name` User's current family name.
 #'    * `picture_url` A URL to get the user's current profile picture.
 #'
-#' @seealso `gsi_verify_credential()` for decoding and verifying an encoded
-#'   Google ID JWT.
+#' @seealso `gsi_verify()` for decoding and verifying an encoded Google ID JWT.
 #'
 #' @export
 gsi_user_info <- function(credential) {
