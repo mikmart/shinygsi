@@ -74,7 +74,7 @@ containing a list with the verified Google ID token's payload." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygsi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9007</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@ from the linked UI part, <code><a href='googleSignInUI.html'>googleSignInUI()</a
 containing a list with the verified Google ID token's payload.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>googleSignInServer</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>client_ids</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>googleSignInServer</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,8 +132,15 @@ containing a list with the verified Google ID token's payload.</p>
 UI function.</p></td>
     </tr>
     <tr>
-      <th>client_ids</th>
-      <td><p>A character vector of client IDs your app recognizes.</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='gsi_verifier.html'>gsi_verifier</a></code></p><dl>
+    <dt><code>client_ids</code></dt><dd><p>A character vector of client IDs your app recognizes.</p></dd>
+    <dt><code>public_keys</code></dt><dd><p>A list of public keys tried for signature verification,
+or a function that returns them. Keys can be objects, or paths to read
+with <code><a href='https://rdrr.io/pkg/openssl/man/read_key.html'>openssl::read_pubkey()</a></code>. If left <code>NULL</code>, fetch Google's current
+public keys from their API when verifying.</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
@@ -141,7 +148,7 @@ UI function.</p></td>
 
     <p>The server module decodes and verifies the encoded Google ID JWT received
 from the UI module upon succesful completion of the authentication flow. See
-<code><a href='gsi_verify_credential.html'>gsi_verify_credential()</a></code> for details about the verification process.</p>
+<code><a href='gsi_verify.html'>gsi_verify()</a></code> for details about the verification process.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='gsi_user_info.html'>gsi_user_info()</a></code> for extracting user details from the return value.</p>
