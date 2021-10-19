@@ -1,4 +1,3 @@
-
 test_that("can decode and verify valid tokens", {
   claim <- valid_claim()
   verify(sign(claim, private_key_1)) %>% expect_equal(claim)
@@ -20,21 +19,36 @@ test_that("verifying token from other valid issuers succeeds", {
 
 test_that("verifying token from incorrect issuer fails", {
   claim <- valid_claim()
+
   claim$iss <- "drive.google.com"
+  verify(sign(claim)) %>%
+    expect_error(class = "gsi_invalid_claims_error")
+
+  claim$iss <- NULL
   verify(sign(claim)) %>%
     expect_error(class = "gsi_invalid_claims_error")
 })
 
 test_that("verifying token for unrecognized client fails", {
   claim <- valid_claim()
+
   claim$aud <- "FAKE-CLIENT.apps.googleusercontent.com"
+  verify(sign(claim)) %>%
+    expect_error(class = "gsi_invalid_claims_error")
+
+  claim$aud <- NULL
   verify(sign(claim)) %>%
     expect_error(class = "gsi_invalid_claims_error")
 })
 
 test_that("verifying expired token fails", {
   claim <- valid_claim()
+
   claim$exp <- as.double(Sys.time() - 3600)
+  verify(sign(claim)) %>%
+    expect_error(class = "gsi_invalid_claims_error")
+
+  claim$exp <- NULL
   verify(sign(claim)) %>%
     expect_error(class = "gsi_invalid_claims_error")
 })
